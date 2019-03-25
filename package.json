@@ -8,7 +8,13 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:all": "ng build && tsc -p ./server/tsconfig.server.json "
+    "build:server": "tsc -p ./server/tsconfig.server.json",
+    "build:all": "ng build && npm run build:server",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w -p ./server/tsconfig.server.json",
+    "node-serve": "node dist/server.js",
+    "watch:server": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch:app": "concurrently -k -p \"[{name}]\" -n \"Angular,TypeScript,Node\" -c \"blue.bold,cyan.bold,green.bold\" \"ng serve\" \"npm run watch-ts\" \"npm run watch-node\""
   },
   "private": true,
   "dependencies": {
@@ -26,6 +32,7 @@
     "ag-grid-angular": "^20.2.0",
     "ag-grid-community": "^20.2.0",
     "core-js": "^2.5.4",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.3.3",
@@ -41,6 +48,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "@types/shelljs": "^0.8.3",
     "codelyzer": "~4.5.0",
     "concurrently": "^4.1.0",
     "jasmine-core": "~2.99.1",
@@ -50,8 +58,10 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nodemon": "^1.18.10",
     "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
+    "shelljs": "^0.8.3",
+    "ts-node": "^8.0.3",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
   }
