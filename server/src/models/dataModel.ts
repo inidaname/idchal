@@ -1,46 +1,53 @@
 import mongoose from 'mongoose';
 
 export type dataModel = mongoose.Document & {
-    id: string,
-    age: number,
-    name: string,
-    phone: string,
-    geoInfo: {
-        latitude: number,
-        longitude: number
-    },
-    childrens: childrensModel
-}
+	id: string;
+	age: number;
+	name: string;
+	phone: string;
+	geoInfo: {
+		latitude: number;
+		longitude: number;
+	};
+	childrens: childrensModel;
+};
 
 export type childrens = mongoose.Document & {
-    (x: object): dataModel,
-    connectionInfo: {
-        type: string,
-        confidence: number
-    }
-}
+	(x: object): dataModel;
+	connectionInfo: {
+		type: string;
+		confidence: number;
+	};
+};
 
 interface childrensModel extends Array<childrens> {}
 
-const data = new mongoose.Schema({
-    id: String,
-    age: Number,
-    name: String,
-    phone: String,
-    geoInfo: {
-        latitude: Number,
-        longitude: Number
-    }
-});
+const dataSchema = new mongoose.Schema(
+	{
+		id: String,
+		age: Number,
+		name: String,
+		phone: String,
+		geoInfo: {
+			latitude: Number,
+			longitude: Number
+		}
+	},
+	{ _id: false }
+);
 
-const childrens = data.clone();
+const childrens = dataSchema.clone();
 childrens.add({
-    connectionInfo: {
-        type: {type: String},
-        confidence: Number
-    }
+	connectionInfo: {
+		type: { type: String },
+		confidence: Number
+	}
 });
 
-data.add({
-    childrens: [childrens]
+dataSchema.add({
+	childrens: [ childrens ]
 });
+
+// export const User: UserType = mongoose.model<UserType>('User', userSchema);
+const transaction = mongoose.model('transaction', dataSchema, 'transaction');
+export default transaction;
