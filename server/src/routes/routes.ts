@@ -5,4 +5,6 @@ import { Index } from './controllers';
 
 export const routes = Router();
 
-routes.get('/', Index.indexController)
+routes
+    .get('/', Index.indexController)
+    .post('/', Index.setDate);
