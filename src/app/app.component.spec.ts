@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 
 describe('AppComponent', () => {
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
       imports: [
         BrowserAnimationsModule,
         RouterTestingModule,
-        MaterialModule
+        MaterialModule,
+        HttpClientModule
       ],
       declarations: [
         AppComponent

@@ -5,6 +5,8 @@ import { Index } from './controllers';
 
 export const routes = Router();
 
-routes
-    .get('/', Index.indexController)
-    .post('/', Index.setDate);
+routes.route('/')
+    .get(Index.indexController);
+
+routes.route('/search')
+    .get(Index.setDate);

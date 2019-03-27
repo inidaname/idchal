@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { GridsComponent } from './grids/grids.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GridsComponent } from './grids/grids.component';
     BrowserAnimationsModule,
     AgGridModule.withComponents([]),
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

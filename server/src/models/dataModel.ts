@@ -12,13 +12,14 @@ export type dataModel = mongoose.Document & {
 	childrens: childrensModel;
 };
 
-export type childrens = mongoose.Document & {
-	(x: object): dataModel;
+interface childrens extends dataModel {
 	connectionInfo: {
-		type: string;
-		confidence: number;
+		type: string,
+		confidence: number,
 	};
+	childrens: childrensModel,
 };
+
 
 interface childrensModel extends Array<childrens> {}
 
@@ -33,7 +34,9 @@ const dataSchema = new mongoose.Schema(
 			longitude: Number
 		}
 	},
-	{ _id: false }
+	{ 
+		_id: false
+	}
 );
 
 const childrens = dataSchema.clone();
@@ -41,13 +44,10 @@ childrens.add({
 	connectionInfo: {
 		type: { type: String },
 		confidence: Number
-	}
-});
-
-dataSchema.add({
+	},
 	childrens: [ childrens ]
 });
 
 // export const User: UserType = mongoose.model<UserType>('User', userSchema);
-const transaction = mongoose.model('transaction', dataSchema, 'transaction');
+const transaction = mongoose.model('transactions', dataSchema, 'transactions');
 export default transaction;

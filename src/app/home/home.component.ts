@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Transaction } from '../types/transaction';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +10,21 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
     columnDefs = [
-        {headerName: 'Make', field: 'make' },
-        {headerName: 'Model', field: 'model' },
-        {headerName: 'Price', field: 'price'}
+        {headerName: 'Name', field: 'name' },
+        {headerName: 'Emai', field: 'email' },
+        {headerName: 'Age', field: 'age' },
+        {headerName: 'Phone', field: 'phone' },
+        {headerName: 'GeoInfo', field: 'geoinfo'}
     ];
 
-    rowData = [
-        { make: 'Toyota', model: 'Celica', price: 35000 },
-        { make: 'Ford', model: 'Mondeo', price: 32000 },
-        { make: 'Porsche', model: 'Boxter', price: 72000 }
-    ];
+    rowData: Array<Transaction> = [];
 
-  constructor() { }
+  constructor(public api: ApiService) { }
 
   ngOnInit() {
+    this.api.getData().subscribe((result: Transaction[]) => {
+      this.rowData = result;
+      console.log(result);
+    });
   }
-
 }
