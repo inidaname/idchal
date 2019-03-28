@@ -11,7 +11,7 @@ export class ApiService {
 	constructor(private http: HttpClient) {}
 
 	getData(): Observable<Transaction[]> {
-    const obs = this.http.get<Transaction[]>('./api/search')
+    const obs = this.http.get<Transaction[]>('http://localhost:3000/api/search')
     return obs;
 	}
 }

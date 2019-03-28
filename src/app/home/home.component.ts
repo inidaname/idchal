@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
         {headerName: 'Emai', field: 'email' },
         {headerName: 'Age', field: 'age' },
         {headerName: 'Phone', field: 'phone' },
-        {headerName: 'GeoInfo', field: 'geoinfo'}
+        {headerName: 'GeoInfo', field:  function(params) { return params.geoinfo.latitue}}
     ];
 
     rowData: Array<Transaction> = [];
