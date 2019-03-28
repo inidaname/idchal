@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "start:dev": "ts-node ../../server.ts"
   },
   "keywords": [],
@@ -17,7 +17,8 @@
     "mongoose": "^5.4.19",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "winston": "^2.4.0"
+    "winston": "^2.4.0",
+    "tslib": "1.9.3"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",

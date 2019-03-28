@@ -8,8 +8,12 @@ export const indexController = (req: Request, res: Response) => {
 export const setDate = (req: Request, res: Response) => {
 	transaction.find({}).lean().exec((err, doc: any) => {
 		if (!err) {
-			const arrs: any = doc.map((v: any, i: any) => Object.keys(doc[i]).map((k) => [ doc[i][k] ][i]));
-			res.status(200).json(arrs[0]);
+			const docObj = doc[0];
+			const objArr = [];
+			for (let key in docObj) {
+				objArr.push(docObj[key]);
+			}
+			res.status(200).json(objArr);
 		}
 	});
 };
