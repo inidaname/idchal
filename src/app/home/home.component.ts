@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Transaction } from '../types/transaction';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import 'ag-grid-enterprise';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +9,7 @@ import 'ag-grid-enterprise';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private icons;
   errorMessage = '';
 
     columnDefs = [
@@ -25,12 +25,12 @@ export class HomeComponent implements OnInit {
           ]},
         {headerName: 'connectionInfo', field: 'connectionInfo', 
         children:[
-          { headerName: 'Confidence', field: 'connectionInfo.confidence',
-           },
-          { headerName: 'Type', field: 'connectionInfo.type' }
+          { headerName: 'Confidence', field: 'connectionInfo.confidence'},
+          { headerName: 'Type', field: 'connectionInfo.type',}
           ]}
     ];
 
+    returnedResult: Transaction[] = [];
     rowData: Transaction[] = [];
     fraudSearch: FormGroup;
     finalResult: Transaction[] = [];
@@ -46,33 +46,36 @@ export class HomeComponent implements OnInit {
       confidenceLv: ['']
     })
 
-    console.log(this.columnDefs)
     this.api.getData().subscribe(
       (result: Transaction[]) => {
-        this.rowData = result;
-        console.log(result)
+        this.returnedResult = result;
       }, (error: any) => this.errorMessage = error);
     }
 
     get f() { return this.fraudSearch.controls; }
 
     searchFraud() {
-      this.getObject(this.rowData, this.f.transactionID.value);
-       this.rowData = this.finalResult;
-        console.log(this.finalResult);
+      if (this.f.confidenceLv.value){
+        this.getObject(this.returnedResult, this.f.transactionID.value, this.f.confidenceLv.value);
+        this.rowData = this.finalResult;
+      } else {
+        this.getObject(this.returnedResult, this.f.transactionID.value);
+        this.rowData = this.finalResult;
+      }
     }
 
-  checkChildren(childrens): any{
+  checkChildren(childrens, confidenceLv): any{
     if(childrens instanceof Array){
       for(let i = 0; i < childrens.length; i++) {
-    console.log('See:', childrens[i])
-        this.finalResult.push(childrens[i]);
-        this.checkChildren(childrens[i].childrens);
+        if (childrens[i].connectionInfo.confidence === confidenceLv){
+          this.finalResult.push(childrens[i]);
+        }
+        this.checkChildren(childrens[i].childrens, confidenceLv);
       }
     }
   }
 
-  getObject(searchData, searchString): Transaction[] {
+  getObject(searchData, searchString, confidenceLv = 1): Transaction[] {
     let result: Transaction[] = [];
     if(searchData instanceof Array) {
       for(let i = 0; i < searchData.length; i++) {
@@ -83,7 +86,7 @@ export class HomeComponent implements OnInit {
         if(prop == 'id') {
               if(searchData[prop] == searchString) {
                 this.finalResult.push(searchData);
-                this.checkChildren(searchData.childrens)
+                this.checkChildren(searchData.childrens, confidenceLv)
               }
             }
             if(searchData[prop] instanceof Object || searchData[prop] instanceof Array) {
