@@ -1,6 +1,15 @@
 <section>
+  <form [formGroup]="fraudSearch">
+    <mat-form-field>
+      <input matInput formControlName="transactionID" placeholder="Transaction ID" value="">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="confidenceLv" placeholder="Transaction ID" value="">
+    </mat-form-field>
+    <button (click)="searchFraud()" mat-raised-button color='primary'>Search</button>
+  </form>
   <ag-grid-angular 
-    style="width: 500px; height: 500px;" 
+    style="width: 100%; height: 500px;"
     class="ag-theme-balham"
     [rowData]="rowData" 
     [columnDefs]="columnDefs"
