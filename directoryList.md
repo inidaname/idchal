@@ -15,31 +15,6 @@
     |-- server.ts
     |-- tsconfig.json
     |-- tslint.json
-    |-- dist
-    |   |-- package-lock.json
-    |   |-- package.json
-    |   |-- server.js
-    |   |-- server.js.map
-    |   |-- server
-    |       |-- src
-    |           |-- app.js
-    |           |-- app.js.map
-    |           |-- controllers
-    |           |   |-- main.js
-    |           |   |-- main.js.map
-    |           |-- models
-    |           |   |-- dataModel.js
-    |           |   |-- dataModel.js.map
-    |           |-- routes
-    |           |   |-- controllers.js
-    |           |   |-- controllers.js.map
-    |           |   |-- routes.js
-    |           |   |-- routes.js.map
-    |           |-- util
-    |               |-- logger.js
-    |               |-- logger.js.map
-    |               |-- secrets.js
-    |               |-- secrets.js.map
     |-- e2e
     |   |-- protractor.conf.js
     |   |-- tsconfig.e2e.json
