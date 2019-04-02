@@ -9,7 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private icons;
   errorMessage = '';
 
     columnDefs = [
@@ -26,7 +25,7 @@ export class HomeComponent implements OnInit {
         {headerName: 'connectionInfo', field: 'connectionInfo', 
         children:[
           { headerName: 'Confidence', field: 'connectionInfo.confidence'},
-          { headerName: 'Type', field: 'connectionInfo.type',}
+          { headerName: 'Type', field: 'connectionInfo.type' }
           ]}
     ];
 

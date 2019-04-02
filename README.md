@@ -1,6 +1,7 @@
 # Fullstackchallenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+This project is fullstack typescript project was built on Node.js version 10.15.3 and generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+A full typescript project with a backend node.js and 
 
 ## Development server
 
