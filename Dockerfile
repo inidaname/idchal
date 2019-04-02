@@ -6,7 +6,7 @@ COPY ["package.json", "npm-shrinkwrap.json*", "./"]
 RUN npm install --silent
 RUN npm install typescript -g
 COPY . .
-RUN ng build --prod --optimization && npm run build:server
+RUN ng build --prod --optimization && cd server && npm install && cd ../ && npm run build:server
 
 
 # Node server
@@ -17,7 +17,6 @@ ENV MONGO_INITDB_ROOT_PASSWORD=root
 
 # Running mongo command
 RUN mkdir ~/db && mkdir ~/db/data
-RUN sudo mongod
 
 # Final image
 FROM node:latest
