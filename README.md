@@ -1,11 +1,7 @@
 # Fullstackchallenge
 
-<<<<<<< HEAD
-This project is fullstack typescript project was built on Node.js version 10.15.3 and generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
-A full typescript project with a backend node.js and 
-=======
-This project is a full stack [Typescript](https://typescriptlang.org) application with the server side built on Express and [Node.js](https://nodejs.org) version 10.15.3 and the client side generated with [Angular CLI](https://cli.angular.io) version 7.3.6.
->>>>>>> 5ef4de8b4b0e825563c8be25be69908bd15681e2
+
+This project is a full stack [Typescript](https://typescriptlang.org) application with the server side built on Express and [Node.js](https://nodejs.org) version 10.15. Client side generated with [Angular CLI](https://cli.angular.io) version 7.3.6.
 
 ## Client Side
 
