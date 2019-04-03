@@ -1,7 +1,12 @@
 # Fullstackchallenge
 
-
 This project is a full stack [Typescript](https://typescriptlang.org) application with the server side built on Express and [Node.js](https://nodejs.org) version 10.15. Client side generated with [Angular CLI](https://cli.angular.io) version 7.3.6.
+
+## The Project
+
+To clone this project to your local machine run `git clone https://github.com/inidaname/idchal`, navigate to the new directory `cd idchal` and run `npm install`.
+
+To pull the docker image from Docker Hub run `docker pull inidaname/ng-fullstack`
 
 ## Client Side
 
