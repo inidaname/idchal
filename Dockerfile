@@ -9,15 +9,6 @@ COPY . .
 RUN ng build --prod --optimization && cd server && npm install && cd ../ && npm run build:server
 
 
-# Node server
-FROM mongo as node-server
-WORKDIR /usr/src/app/server
-ENV MONGO_INITDB_ROOT_USERNAME=root
-ENV MONGO_INITDB_ROOT_PASSWORD=root
-
-# Running mongo command
-RUN mkdir ~/db && mkdir ~/db/data
-
 # Final image
 FROM node:latest
 WORKDIR /usr/src/app

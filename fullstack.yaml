@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ng-fullstack
+  labels:
+    name: ng-fullstack
+spec:
+  containers:
+  - name: ng-fullstack
+    image: inidaname/ng-fullstack
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 3000

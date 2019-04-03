@@ -4,7 +4,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import { MONGODB_URI } from './util/secrets';
-import cors from 'cors';
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: '.env.example' });
@@ -18,7 +17,7 @@ const app = express();
 const mongoUrl = MONGODB_URI;
 mongoose.Promise = global.Promise;
 mongoose
-	.connect('mongodb://localhost:27017/transactions', {  useNewUrlParser: true })
+	.connect(mongoUrl, {  useNewUrlParser: true })
 	.then(() => {
 		/** ready to use. The `mongoose.connect()` promise resolves to undefined. */
 	})
