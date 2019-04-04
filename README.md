@@ -4,7 +4,7 @@ This project is a full stack [Typescript](https://typescriptlang.org) applicat
 
 ## The Project
 
-To clone this project to your local machine run `git clone https://github.com/inidaname/idchal`, navigate to the new directory `cd idchal` and run `npm install`.
+To clone this project to your local machine run `git clone https://github.com/inidaname/idchal.git`, navigate to the new directory `cd idchal` and run `npm install`.
 
 To pull the docker image from Docker Hub run `docker pull inidaname/ng-fullstack`
 
